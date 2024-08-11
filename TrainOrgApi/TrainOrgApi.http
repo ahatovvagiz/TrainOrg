@@ -1,0 +1,6 @@
+@TrainOrgApi_HostAddress = http://localhost:5142
+
+GET {{TrainOrgApi_HostAddress}}/trainorg/
+Accept: application/json
+
+###
