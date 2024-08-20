@@ -10,6 +10,7 @@ namespace TrainOrgApi.Dtos
         public DateTime EndTime { get; set; }
         // List<ExerciseRowDto> Exercises { get; set; }
         //public UserDto? Trainer { get; set; }
-        public UserDto User { get; set; }
+        //public UsersDto User { get; set; }
+        public int UserId { get; set; }
     }
 }

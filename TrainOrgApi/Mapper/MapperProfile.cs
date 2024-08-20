@@ -13,6 +13,8 @@ namespace TrainOrgApi.Mapper
             CreateMap<User, UserDto>()
                 .ReverseMap().ForMember(user => user.Password, opt => opt.MapFrom(userdto => StringToByteArray(userdto.Password)));
             //CreateMap<RoleId, RoleIdDto>().ReverseMap();
+            CreateMap<User, UsersDto>()
+                .ReverseMap();
         }
         private static byte[] StringToByteArray(string str)
         {
