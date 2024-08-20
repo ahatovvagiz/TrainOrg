@@ -29,7 +29,7 @@ namespace TrainOrgApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("check_user")]
         public ActionResult<RoleId> CheckUser(LoginDto login)
         {
             try
