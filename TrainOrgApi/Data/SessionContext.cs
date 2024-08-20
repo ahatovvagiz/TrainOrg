@@ -41,6 +41,9 @@ namespace TrainOrgApi.Data
                 entity.HasOne(p => p.User)
                       .WithMany()
                       .HasForeignKey(p => p.UserId);
+                entity.HasOne(p => p.Trainer)
+                      .WithMany()
+                      .HasForeignKey(p => p.TrainerId);
 
             });
 
@@ -61,16 +64,6 @@ namespace TrainOrgApi.Data
             //    entity.HasMany(x => x.Exercises)
             //      .WithOne(x => x.Session)
             //      .HasForeignKey(x => x.SessionId);
-
-            //    entity.HasOne(p => p.User)
-            //        .WithMany()
-            //        //.WithMany(p => p.UserSessions)
-            //        .HasForeignKey(p => p.UserId);
-            //    entity.HasOne(p => p.Trainer)
-            //        .WithMany()   
-            //        //.WithMany(p => p.TrainerSessions)
-            //        .HasForeignKey(p => p.TrainerId);
-            //    //entity.HasOne(x => x.Sessions).WithMany(x => x.Exercises).HasForeignKey(x => x.RoleId);
             //});
 
             modelBuilder.Entity<ExerciseRow>(entity =>

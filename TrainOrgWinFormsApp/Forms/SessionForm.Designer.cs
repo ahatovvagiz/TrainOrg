@@ -38,6 +38,9 @@
             dateTimePickerStartTime = new DateTimePicker();
             dateTimePickerEndTime = new DateTimePicker();
             buttonUserForm = new Button();
+            labelTrainer = new Label();
+            textBoxTrainer = new TextBox();
+            buttonTrainer = new Button();
             SuspendLayout();
             // 
             // labelId
@@ -88,7 +91,7 @@
             // labelUser
             // 
             labelUser.AutoSize = true;
-            labelUser.Location = new Point(12, 96);
+            labelUser.Location = new Point(12, 99);
             labelUser.Name = "labelUser";
             labelUser.Size = new Size(33, 15);
             labelUser.TabIndex = 8;
@@ -127,11 +130,40 @@
             buttonUserForm.UseVisualStyleBackColor = true;
             buttonUserForm.Click += buttonUserForm_Click;
             // 
+            // labelTrainer
+            // 
+            labelTrainer.AutoSize = true;
+            labelTrainer.Location = new Point(12, 130);
+            labelTrainer.Name = "labelTrainer";
+            labelTrainer.Size = new Size(45, 15);
+            labelTrainer.TabIndex = 12;
+            labelTrainer.Text = "Trainer:";
+            // 
+            // textBoxTrainer
+            // 
+            textBoxTrainer.Location = new Point(79, 127);
+            textBoxTrainer.Name = "textBoxTrainer";
+            textBoxTrainer.Size = new Size(100, 23);
+            textBoxTrainer.TabIndex = 13;
+            // 
+            // buttonTrainer
+            // 
+            buttonTrainer.Location = new Point(185, 127);
+            buttonTrainer.Name = "buttonTrainer";
+            buttonTrainer.Size = new Size(101, 23);
+            buttonTrainer.TabIndex = 14;
+            buttonTrainer.Text = "Users";
+            buttonTrainer.UseVisualStyleBackColor = true;
+            buttonTrainer.Click += buttonTrainer_Click;
+            // 
             // SessionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonTrainer);
+            Controls.Add(textBoxTrainer);
+            Controls.Add(labelTrainer);
             Controls.Add(buttonUserForm);
             Controls.Add(dateTimePickerEndTime);
             Controls.Add(dateTimePickerStartTime);
@@ -161,5 +193,8 @@
         private DateTimePicker dateTimePickerStartTime;
         private DateTimePicker dateTimePickerEndTime;
         private Button buttonUserForm;
+        private Label labelTrainer;
+        private TextBox textBoxTrainer;
+        private Button buttonTrainer;
     }
 }

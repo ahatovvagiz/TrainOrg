@@ -112,11 +112,16 @@ namespace TrainOrgApi.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("starttime");
 
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id")
                         .HasName("sessions_pk");
+
+                    b.HasIndex("TrainerId");
 
                     b.HasIndex("UserId");
 
@@ -182,11 +187,19 @@ namespace TrainOrgApi.Migrations
 
             modelBuilder.Entity("TrainOrgApi.Models.Session", b =>
                 {
+                    b.HasOne("TrainOrgApi.Models.User", "Trainer")
+                        .WithMany()
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TrainOrgApi.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Trainer");
 
                     b.Navigation("User");
                 });

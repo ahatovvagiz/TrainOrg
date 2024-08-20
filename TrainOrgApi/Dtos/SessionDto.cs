@@ -12,5 +12,6 @@ namespace TrainOrgApi.Dtos
         //public UserDto? Trainer { get; set; }
         //public UsersDto User { get; set; }
         public int UserId { get; set; }
+        public int TrainerId { get; set; }
     }
 }

@@ -47,10 +47,11 @@ namespace TrainOrgWinFormsApp
                 //User =      
                 StartTime = DateTime.Parse(dateTimePickerStartTime.Text).ToUniversalTime(),
                 EndTime = DateTime.Parse(dateTimePickerEndTime.Text).ToUniversalTime(),
-                UserId = int.Parse(textBoxUser.Text)
+                UserId = int.Parse(textBoxUser.Text),
+                TrainerId = int.Parse(textBoxTrainer.Text)
                 //User = new UsersDto()
                 //{
-                    
+
                 //}
 
             };
@@ -146,7 +147,7 @@ namespace TrainOrgWinFormsApp
 
         private void buttonUserForm_Click(object sender, EventArgs e)
         {
-            UsersForm form2 = new UsersForm(this); // Создаем экземпляр Form2
+            UsersForm form2 = new UsersForm(this, false); // Создаем экземпляр Form2
             form2.Show(); // Открываем Form2
         }
 
@@ -155,9 +156,22 @@ namespace TrainOrgWinFormsApp
 
         }
 
-        public void SetValue(string UserId)
+        public void SetValue(string UserId, bool itsTrainer)
         {
-            textBoxUser.Text = UserId;
+            if (itsTrainer)
+            {
+                textBoxTrainer.Text = UserId;
+            }
+            else
+            {
+                textBoxUser.Text = UserId;
+            }                      
+        }
+
+        private void buttonTrainer_Click(object sender, EventArgs e)
+        {
+            UsersForm form2 = new UsersForm(this, true); // Создаем экземпляр Form2
+            form2.Show(); // Открываем Form2
         }
     }
 }

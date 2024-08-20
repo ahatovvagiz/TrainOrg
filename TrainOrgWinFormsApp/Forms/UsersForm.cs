@@ -10,11 +10,13 @@ namespace TrainOrgWinFormsApp
     public partial class UsersForm : Form
     {
         private SessionForm _parentForm;
+        private bool _itsTrainer;
         private static readonly HttpClient httpClient = new HttpClient();
-        public UsersForm(SessionForm parentForm)
+        public UsersForm(SessionForm parentForm, bool itsTrainer)
         {
             InitializeComponent();
             _parentForm = parentForm;
+            _itsTrainer = itsTrainer;
         }
 
         private async void UsersForm_Load(object sender, EventArgs e)
@@ -70,7 +72,7 @@ namespace TrainOrgWinFormsApp
             {
                 // Предположим, что значение, которое мы хотим передать, находится в первом столбце
                 string selectedValue = dataGridViewUsers.Rows[e.RowIndex].Cells[0].Value.ToString();
-                _parentForm.SetValue(selectedValue);
+                _parentForm.SetValue(selectedValue, _itsTrainer);
                 this.Close(); // Закрываем дочернюю форму
             }
         }
