@@ -1,3 +1,5 @@
+using TrainOrgWinFormsApp.Forms;
+
 namespace TrainOrgWinFormsApp
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace TrainOrgWinFormsApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new SessionForm());
+            Application.Run(new LoginForm());
         }
     }
 }

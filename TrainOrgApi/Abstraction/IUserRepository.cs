@@ -8,5 +8,6 @@ namespace TrainOrgApi.Abstraction
         int AddUser(UserDto user);
         RoleId CheckUser(LoginDto login);
         int GetUsers();
+        List<User> GetAllUsers();
     }
 }

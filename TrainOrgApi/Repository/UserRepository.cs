@@ -10,14 +10,21 @@ namespace TrainOrgApi.Repository
 {
     public class UserRepository : IUserRepository
     {
+        SessionContext _sessionContext;
         IMapper _mapper;
+        public UserRepository(SessionContext sessionContext, IMapper mapper)
+        {
+            this._sessionContext = sessionContext;
+            this._mapper = mapper;
+        }
+
         public int AddUser(UserDto user)
         {
             using (var context = new SessionContext())
             {
                 if (context.Users.Any(x => x.Name == user.Name))
                     throw new Exception("User is already exist!");
-                if (user.Role == UserRoleDto.Admin)
+                if (user.RoleId == RoleIdDto.Admin)
                     if (context.Users.Any(x => x.RoleId == RoleId.Admin))
                         throw new Exception("Admin is already exist!");
 
@@ -66,6 +73,16 @@ namespace TrainOrgApi.Repository
                     Console.WriteLine($"ID: {user.Id}, Name: {user.Name}, Role: {user.Role}");
                 }
                 return users.Count;
+            }
+        }
+
+        public List<User> GetAllUsers()
+        {
+            using (var context = new SessionContext())
+            {
+                //return await context.Sessions.ToListAsync();
+
+                return context.Users.ToList();
             }
         }
     }

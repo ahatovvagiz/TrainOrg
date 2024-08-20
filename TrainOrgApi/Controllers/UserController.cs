@@ -54,5 +54,18 @@ namespace TrainOrgApi.Controllers
                 return StatusCode(409, ex.Message);
             }
         }
+
+        [HttpGet("get_all_users")]
+        public ActionResult<int> GetAllUsers()
+        {
+            try
+            {
+                return Ok(_repository.GetAllUsers());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(409, ex.Message);
+            }
+        }
     }
 }
