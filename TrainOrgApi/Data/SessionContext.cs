@@ -75,12 +75,12 @@ namespace TrainOrgApi.Data
                 entity.Property(x => x.CountReps);
                 entity.Property(x => x.CountTrips);
 
+                entity.HasOne(p => p.Session)
+                      .WithMany()
+                      .HasForeignKey(p => p.SessionId);
                 entity.HasOne(p => p.Exercise)
                     .WithMany(p => p.ExerciseRow)
                     .HasForeignKey(p => p.ExerciseId);
-                //entity.HasOne(x => x.Exercise)
-                //  .WithOne(x => x.ExerciseRow)
-                //  .HasForeignKey(x => x.SessionId);
             });
             modelBuilder.Entity<Exercise>(entity =>
             {

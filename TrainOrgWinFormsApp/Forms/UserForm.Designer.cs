@@ -104,6 +104,7 @@
             comboBoxRole.Name = "comboBoxRole";
             comboBoxRole.Size = new Size(121, 23);
             comboBoxRole.TabIndex = 8;
+            comboBoxRole.SelectedIndexChanged += comboBoxRole_SelectedIndexChanged;
             // 
             // UserForm
             // 

@@ -5,6 +5,7 @@ using TrainOrgApi.Dtos;
 using TrainOrgApi.Models;
 using TrainOrgApi.Data;
 using TrainOrgApi.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 namespace TrainOrgApi.Repository
 {
@@ -81,7 +82,7 @@ namespace TrainOrgApi.Repository
             using (var context = new SessionContext())
             {
                 //return await context.Sessions.ToListAsync();
-
+                //context.Database.OpenConnection();
                 return context.Users.ToList();
             }
         }

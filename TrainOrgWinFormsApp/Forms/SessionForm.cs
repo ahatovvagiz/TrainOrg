@@ -58,6 +58,7 @@ namespace TrainOrgWinFormsApp
 
             // Call the method to save the session
             await SaveSessionAsync(session);
+
         }
 
         private async Task SaveSessionAsync(SessionDto session)
@@ -81,6 +82,7 @@ namespace TrainOrgWinFormsApp
                 // Process the response
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine("Response: " + responseContent);
+                this.Close();
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {

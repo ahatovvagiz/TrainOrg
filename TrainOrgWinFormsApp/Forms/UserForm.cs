@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 using TrainOrgApi.Dtos;
+using TrainOrgApi.Models;
 
 namespace TrainOrgWinFormsApp.Forms
 {
@@ -18,13 +19,20 @@ namespace TrainOrgWinFormsApp.Forms
             var username = textName.Text;
             var password = textPassword.Text;
 
+            if (int.TryParse(comboBoxRole.Text, out int roleid) == false)
+            {
+                labelStatus.Text = "Некорректно заполнена роль.";
+                return;
+            }
+            //var roleid = int.Parse();
+
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 labelStatus.Text = "Пожалуйста, заполните все поля.";
                 return;
             }
 
-            var user = new UserDto { Name = username, Password = password, RoleId = RoleIdDto.User };
+            var user = new UserDto { Name = username, Password = password, RoleId = (RoleIdDto)roleid };
             var json = JsonSerializer.Serialize(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -55,7 +63,12 @@ namespace TrainOrgWinFormsApp.Forms
         private void UserForm_Load(object sender, EventArgs e)
         {
             comboBoxRole.Items.Add(0);
-            comboBoxRole.Items.Add(1);       
+            comboBoxRole.Items.Add(1);
+        }
+
+        private void comboBoxRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
