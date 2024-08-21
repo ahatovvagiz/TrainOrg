@@ -61,6 +61,41 @@ namespace TrainOrgWinFormsApp
 
         }
 
+        private async Task SaveExerciseRows(ExerciseRowDto exerciseRow)
+        {
+            string apiUrl = "https://localhost:7116/Sessions/add_session"; // replace with your actual API URL
+            var json = JsonSerializer.Serialize(exerciseRow);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    MessageBox.Show("Session saved successfully!");
+            //}
+            //else
+            //{
+            //    MessageBox.Show($"Error saving session: {response.StatusCode}");
+            //}
+            if (response.IsSuccessStatusCode)
+            {
+                // Process the response
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Response: " + responseContent);
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                // Read the error content for more details
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Bad Request. Details: " + errorContent);
+            }
+            else
+            {
+                // Handle other status codes
+                Console.WriteLine($"Error: {response.StatusCode}");
+            }
+        }
+
         private async Task SaveSessionAsync(SessionDto session)
         {
             string apiUrl = "https://localhost:7116/Sessions/add_session"; // replace with your actual API URL
@@ -82,7 +117,6 @@ namespace TrainOrgWinFormsApp
                 // Process the response
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine("Response: " + responseContent);
-                this.Close();
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {

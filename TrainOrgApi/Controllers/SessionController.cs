@@ -16,13 +16,13 @@ namespace TrainOrgApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class SessionsController : ControllerBase
+    public class SessionController : ControllerBase
     {
         //private readonly SessionContext _context;
 
         private readonly ISessionRepository _repository;
 
-        public SessionsController(ISessionRepository repository)
+        public SessionController(ISessionRepository repository)
         {
             //_context = context;
             _repository = repository;

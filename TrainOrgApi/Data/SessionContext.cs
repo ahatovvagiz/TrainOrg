@@ -46,26 +46,6 @@ namespace TrainOrgApi.Data
                       .HasForeignKey(p => p.TrainerId);
 
             });
-
-            //modelBuilder.Entity<Session>(entity =>
-            //{
-            //    entity.ToTable("sessions");
-
-            //    entity.HasKey(x => x.Id).HasName("sessions_pk");
-
-            //    entity.Property(x => x.StartTime).HasColumnName("starttime");//.HasMaxLength(25);
-            //    entity.Property(x => x.EndTime).HasColumnName("endtime");
-            //    //entity.Property(x => x.User).HasColumnName("user");
-            //    //entity.Property(x => x.Trainer).HasColumnName("trainer");
-            //    //entity.Property(x => x.RoleId).HasConversion<int>();
-            //    //entity.HasMany(x => x.Exercises)
-            //    //                  .WithOne(x => x.Session)
-            //    //                  .HasForeignKey(x => x.SessionId);
-            //    entity.HasMany(x => x.Exercises)
-            //      .WithOne(x => x.Session)
-            //      .HasForeignKey(x => x.SessionId);
-            //});
-
             modelBuilder.Entity<ExerciseRow>(entity =>
             {
                 entity.ToTable("exerciserows");
@@ -75,12 +55,23 @@ namespace TrainOrgApi.Data
                 entity.Property(x => x.CountReps);
                 entity.Property(x => x.CountTrips);
 
+                //entity.HasOne(p => p.Session)
+                //      .WithMany()
+                //      .HasForeignKey(p => p.SessionId);
+                //entity.HasOne(p => p.Exercise)
+                //    .WithMany()
+                //    .HasForeignKey(p => p.ExerciseId);
                 entity.HasOne(p => p.Session)
-                      .WithMany()
-                      .HasForeignKey(p => p.SessionId);
+                      .WithMany(s => s.ExerciseRows) // Добавьте это, если у Session есть ExerciseRows
+                      .HasForeignKey(p => p.SessionId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
                 entity.HasOne(p => p.Exercise)
-                    .WithMany(p => p.ExerciseRow)
-                    .HasForeignKey(p => p.ExerciseId);
+                      .WithMany() // Добавьте это, если у Exercise есть ExerciseRows
+                      .HasForeignKey(p => p.ExerciseId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+
             });
             modelBuilder.Entity<Exercise>(entity =>
             {
